@@ -1,24 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('@views/About.vue')
-  },
+const routes = [
   {
     path: '/iconManager',
     name: 'iconManager',
     component: () => import('@views/iconManager')
+  },
+  {
+    path: '/myComponents',
+    name: 'myComponents',
+    component: () => import('@views/myComponents'),
+    children: [
+      {
+        path: 'myForm',
+        name: 'myForm',
+        component: () => import('@views/myComponents/myForm')
+      },
+      {
+        path: 'searchSelect',
+        name: 'searchSelect',
+        component: () => import('@views/myComponents/searchSelect')
+      },
+    ]
   }
 ]
 

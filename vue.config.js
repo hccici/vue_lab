@@ -26,5 +26,12 @@ module.exports = {
                 symbolId: 'icon-[name]'
             })
             .end()
+    },
+    devServer: {
+        port: 9527,
+    },
+    pages: {
+        index: 'src/main.js',
+        other: 'src/othersPage/main.js'
     }
 }

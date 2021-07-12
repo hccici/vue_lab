@@ -47,7 +47,7 @@
 import emitter from 'element-ui/src/mixins/emitter';
 const selfRecord = {};
 export default {
-    name: 'msnSeachSelect',
+    name: 'SearchSelect',
     props: {
         data: {
             type: Array,
