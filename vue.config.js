@@ -8,6 +8,8 @@ module.exports = {
             .set('@', resolve('src'))
             .set('@views', resolve('src/views'))
             .set('@components', resolve('src/components'))
+            .set('@modules', resolve('my_node_modules'))
+            .set('@views2', resolve('src/othersPage/views'))
         // set svg-sprite-loader 
         // 修改原来svg处理规则
         config.module
