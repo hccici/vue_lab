@@ -5,9 +5,16 @@
   </div>
 </template>
 <script>
+import { login } from '@api/user'
 import Nav from '@/components/Nav'
 export default {
   name: 'App',
+  beforeCreate() {
+    login({
+      account: 'admin',
+      password: '123456'
+    })
+  },
   components: {
     Nav,
   }
