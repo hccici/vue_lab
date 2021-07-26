@@ -1,5 +1,8 @@
 <template>
-  <SearchSelect :optionList="optionList" v-model="select" />
+  <div>
+    <label for="">{{$t('component.form')}}</label>
+    <SearchSelect :optionList="optionList" v-model="select" />
+  </div>
 </template>
 
 <script>
