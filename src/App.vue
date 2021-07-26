@@ -11,7 +11,7 @@ export default {
   name: 'App',
   beforeCreate() {
     login({
-      account: 'admin',
+      username: 'admin',
       password: '123456'
     })
   },

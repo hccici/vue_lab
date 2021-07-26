@@ -12,6 +12,7 @@ module.exports = {
             .set('@views2', resolve('src/othersPage/views'))
             .set('@utils', resolve('src/utils'))
             .set('@api', resolve('src/api'))
+            .set('@store', resolve('src/store'))
         // set svg-sprite-loader 
         // 修改原来svg处理规则
         config.module
