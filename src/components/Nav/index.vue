@@ -16,7 +16,7 @@ export default {
     return {
       showNav: true,
       langOptions: this.initOptions(),
-      lang: this.$i18n.locale
+      lang: this.$i18n.locale,
     }
   },
   watch: {
