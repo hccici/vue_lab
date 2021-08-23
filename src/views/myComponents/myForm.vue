@@ -1,24 +1,31 @@
 
 <template>
-  <MyForm :config="config" :render-set="renderSet" :form="form" />
+  <div>
+    <MyForm :config="config" :render-set="renderSet" :form="form" />
+    <ul>
+      <li v-for="(item,index) of formList" :key="item.name" @click="handleEdit(index)">
+        {{`name: ${item.name} | age: ${item.age} | sex: ${item.sex}`}}
+      </li>
+    </ul>
+    <my-dialog-form ref="dialog" :config="config" :render-set="renderSet" title="添加" @change="handleFormItemChange" />
+  </div>
+
 </template>
 
 <script>
-const getSelect = function () {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([{ value: '18', label: '18' }, { value: '19', label: '19' }])
-    }, 3000)
-  })
-}
+import { getAge, getAnimal } from '@api/options'
 import MyForm from '@components/MyForm'
+import MyDialogForm from '@components/MyForm/dialog'
+import { SUCCESS } from '@utils/responseCode'
 export default {
   name: 'myForm',
   components: {
-    MyForm
+    MyForm,
+    MyDialogForm
   },
   data() {
     return {
+      formIndex: 0,
       config: {
         gutter: 10
       },
@@ -32,8 +39,28 @@ export default {
         ],
         [
           {
+            type: 'select', label: '类型', key: 'type', span: 6,
+            getRemoteOptions: (val) => {
+              return getAnimal({ key: val }).then(res => {
+                if (res.code === SUCCESS) {
+                  return res.data
+                } else {
+                  return []
+                }
+              })
+            }
+          },
+          {
             type: 'select', label: '年龄', key: 'age', rules: [{ required: true, message: '请输入年龄', trigger: 'change' }],
-            getOptionsMethod: getSelect
+            getOptionsMethod: function () {
+              return getAge().then(res => {
+                if (res.code === SUCCESS) {
+                  return res.data
+                } else {
+                  return []
+                }
+              })
+            }
           },
         ]
       ],
@@ -41,7 +68,33 @@ export default {
         name: 'hhj',
         age: '18',
         sex: 'boy',
-      }
+      },
+      formList: [
+        {
+          name: 'hhj',
+          age: '17',
+          sex: 'boy',
+        },
+        {
+          name: 'hzh',
+          age: '18',
+          sex: 'boy',
+        },
+        {
+          name: 'ljw',
+          age: '18',
+          sex: 'boy',
+        }
+      ]
+    }
+  },
+  methods: {
+    handleEdit(index) {
+      this.formIndex = index
+      this.$refs.dialog.show(this.formList[index])
+    },
+    handleFormItemChange(form) {
+      this.$set(this.formList, this.formIndex, form);
     }
   }
 }
