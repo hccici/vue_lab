@@ -20,7 +20,6 @@ module.exports = [
     method: 'get',
     response: config => {
       const { key } = config.query
-      console.log(config)
       const data = ANIMAL.filter(item => {
         return item.value.indexOf(key) > -1
       })
