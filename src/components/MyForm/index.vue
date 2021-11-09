@@ -1,38 +1,41 @@
 <template>
-  <el-form :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-    <template v-for="(row, rowIndex) of selfRenderSet">
-      <el-row :key="`row-${rowIndex}`" :gutter="selfConfig.gutter">
-        <template v-for="col of row">
-          <el-col :key="`${col.key}`" :span="col.span">
-            <el-form-item :label="col.label" :prop="col.key">
-              <template v-if="col.type === 'input'">
-                <el-input v-model="form[col.key]"></el-input>
-              </template>
-              <template v-else-if="col.type === 'radio'">
-                <el-radio-group v-model="form[col.key]">
-                  <template v-for="opt of col.options">
-                    <el-radio :key="opt.value" :label="opt.value">{{opt.label}}</el-radio>
-                  </template>
-                </el-radio-group>
-              </template>
-              <template v-else-if="col.type === 'select'">
-                <el-select v-model="form[col.key]" :placeholder="col.placeholder"
-                  :filterable="typeof col.getRemoteOptions === 'function'"
-                  :remote="typeof col.getRemoteOptions === 'function'"
-                  :remote-method="typeof col.getRemoteOptions === 'function' ? makeOptions(col): undefined"
-                  :loading="col.loading">
-                  <template v-for="opt of col.options">
-                    <el-option :key="opt.value" :label="opt.label" :value="opt.value">
-                    </el-option>
-                  </template>
-                </el-select>
-              </template>
-            </el-form-item>
-          </el-col>
-        </template>
-      </el-row>
-    </template>
-  </el-form>
+  <div>
+    <div>{{title}}</div>
+    <el-form :model="form" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+      <template v-for="(row, rowIndex) of selfRenderSet">
+        <el-row :key="`row-${rowIndex}`" :gutter="selfConfig.gutter">
+          <template v-for="col of row">
+            <el-col :key="`${col.key}`" :span="col.span">
+              <el-form-item :label="col.label" :prop="col.key">
+                <template v-if="col.type === 'input'">
+                  <el-input v-model="form[col.key]"></el-input>
+                </template>
+                <template v-else-if="col.type === 'radio'">
+                  <el-radio-group v-model="form[col.key]">
+                    <template v-for="opt of col.options">
+                      <el-radio :key="opt.value" :label="opt.value">{{opt.label}}</el-radio>
+                    </template>
+                  </el-radio-group>
+                </template>
+                <template v-else-if="col.type === 'select'">
+                  <el-select v-model="form[col.key]" :placeholder="col.placeholder"
+                    :filterable="typeof col.getRemoteOptions === 'function'"
+                    :remote="typeof col.getRemoteOptions === 'function'"
+                    :remote-method="typeof col.getRemoteOptions === 'function' ? makeOptions(col): undefined"
+                    :loading="col.loading">
+                    <template v-for="opt of col.options">
+                      <el-option :key="opt.value" :label="opt.label" :value="opt.value">
+                      </el-option>
+                    </template>
+                  </el-select>
+                </template>
+              </el-form-item>
+            </el-col>
+          </template>
+        </el-row>
+      </template>
+    </el-form>
+  </div>
 </template>
 
 <script>
@@ -58,6 +61,10 @@ export default {
     form: {
       required: true,
       type: Object
+    },
+    title: {
+      required: true,
+      type: String
     }
   },
   data() {

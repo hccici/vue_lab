@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <MyForm :config="config" :render-set="renderSet" :form="form" />
+    <MyForm :config="config" :render-set="renderSet" :form="form" v-bind="titleConfig"/>
     <ul>
       <li v-for="(item,index) of formList" :key="item.name" @click="handleEdit(index)">
         {{`name: ${item.name} | age: ${item.age} | sex: ${item.sex}`}}
@@ -25,6 +25,9 @@ export default {
   },
   data() {
     return {
+      titleConfig: {
+        title: '我的表格'
+      },
       formIndex: 0,
       config: {
         gutter: 10

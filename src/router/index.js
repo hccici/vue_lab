@@ -10,6 +10,11 @@ const routes = [
     component: () => import('@views/iconManager')
   },
   {
+    path: '/codeMirror',
+    name: 'codeMirror',
+    component: () => import('@views/codeMirror')
+  },
+  {
     path: '/myComponents',
     name: 'myComponents',
     component: () => import('@views/myComponents'),
