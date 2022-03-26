@@ -2,7 +2,8 @@
   <div id="nav" v-if="showNav">
     <router-link to="/iconManager">icon</router-link> |
     <router-link to="/codeMirror">{{$t('common.codeMirror')}}</router-link> |
-    <router-link to="/myComponents">{{$t('common.component')}}</router-link>
+    <router-link to="/myComponents">{{$t('common.component')}}</router-link> |
+    <router-link to="/table">table</router-link>
     <el-select v-model="lang" @change="changeLang" class="nav__select-lang">
       <el-option v-for="item in langOptions" :key="item.value" :label="item.label" :value="item.value">
       </el-option>

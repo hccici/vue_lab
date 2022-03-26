@@ -15,6 +15,11 @@ const routes = [
     component: () => import('@views/codeMirror')
   },
   {
+    path: '/table',
+    name: 'table',
+    component: () => import('@views/table')
+  },
+  {
     path: '/myComponents',
     name: 'myComponents',
     component: () => import('@views/myComponents'),
@@ -28,6 +33,11 @@ const routes = [
         path: 'searchSelect',
         name: 'searchSelect',
         component: () => import('@views/myComponents/searchSelect')
+      },
+      {
+        path: 'editTable',
+        name: 'editTable',
+        component: () => import('@views/myComponents/editTable.vue')
       },
     ]
   }
